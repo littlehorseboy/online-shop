@@ -12,16 +12,26 @@ export default new Router({
       path: '/',
       name: 'ProductView',
       component: ProductView,
+      meta: {
+        breadcrumb: '首頁',
+      },
       children: [
         {
           path: 'product',
           name: 'Product',
           component: Product,
+          meta: {
+            breadcrumb: '產品',
+          },
         },
         {
           path: 'helloword',
           name: 'HelloWorld',
           component: HelloWorld,
+          meta: {
+            breadcrumb: 'HelloWorld',
+
+          },
         },
       ],
     },
