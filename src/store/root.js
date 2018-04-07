@@ -30,7 +30,7 @@ export const actions = {
           commit(types.LOADING, false);
           reject();
         }
-      }, 500);
+      }, 1500);
     });
   },
 

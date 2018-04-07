@@ -13,7 +13,7 @@
         </button>
       </div>
       <transition name="router-anim">
-        <div class="list-group list-group-flush" v-show="item.show">
+        <div class="list-group list-group-flush mb-1" v-show="item.show">
           <a class="list-group-item list-group-item-action" @click="setProductsSearchDetailsId(item.id, detail.id)"
             v-for="(detail, index) in item.productDetails" :key="index">
             {{ detail.productName }}

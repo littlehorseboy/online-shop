@@ -63,14 +63,16 @@ export default {
       this.$store.dispatch('actionLogin', {
         email: this.email,
         password: this.password,
-      }).then(() => { // 接收 resolve
+      })
+      .then(() => { // 接收 resolve
         console.log('3. get Promise resolve');
+        // 使用 $router.push 轉跳到 hello Page
         setTimeout(() => {
-          // 使用 $router.push 轉跳到 hello Page
           this.$router.push('/admin');
-        }, 600);
-      }).catch(() => { // 接收 reject
-        console.log('error get Promise reject!');
+        }, 1000);
+      })
+      .catch(() => { // 接收 rejec
+        alert('error get Promise reject!');
       });
     },
     ...mapActions([

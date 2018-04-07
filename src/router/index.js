@@ -50,7 +50,7 @@ const router = new Router({
       name: 'AdminView',
       component: AdminView,
       meta: {
-        breadcrumb: '首頁',
+        meta: { requiresAuth: true },
       },
       children: [
         {

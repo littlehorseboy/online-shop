@@ -14,7 +14,7 @@ const state = {
     },
     {
       id: 1,
-      name: '貓1',
+      name: '貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1貓1',
       url: 'http://25.media.tumblr.com/tumblr_los3ueU00y1qeycrwo1_500.jpg',
       productListId: 0,
       productDetailsId: 1,
