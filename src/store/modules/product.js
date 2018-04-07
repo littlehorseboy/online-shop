@@ -55,6 +55,46 @@ const state = {
       productDetailsId: 0,
     },
   ],
+  productList: [
+    {
+      id: 0,
+      title: '最新上架商品',
+      productDetails: [
+        {
+          id: 0,
+          productName: '電視',
+        },
+        {
+          id: 1,
+          productName: '冰箱',
+        },
+        {
+          id: 2,
+          productName: '電風扇',
+        },
+      ],
+      show: true,
+    },
+    {
+      id: 1,
+      title: '熱門商品',
+      productDetails: [
+        {
+          id: 0,
+          productName: '螢幕',
+        },
+        {
+          id: 1,
+          productName: '主機板',
+        },
+        {
+          id: 2,
+          productName: '顯示卡',
+        },
+      ],
+      show: true,
+    },
+  ],
   search: {
     productListId: null,
     productDetailsId: null,
@@ -75,6 +115,7 @@ const getters = {
 
     return tempProducts;
   },
+  getProductLists: state => state.productList,
 };
 
 const actions = {

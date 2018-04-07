@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import Nav from '../components/ProductView/Nav';
+import Nav from '../../components/ProductView/Nav';
 
 export default {
   name: 'ProductView',
