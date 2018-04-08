@@ -22,7 +22,7 @@
             <input class="form-control mr-sm-2"
               type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            <router-link :to="{ name: 'Login' }" class="nav-link">Login</router-link>
+            <a class="nav-link">登出</a>
           </form>
         </div>
       </div>
@@ -57,7 +57,7 @@
 </template>
 
 <script>
-import Nav from '../../components/ProductView/Nav';
+import Nav from '../../components/admin/Nav';
 
 export default {
   name: 'ProductView',

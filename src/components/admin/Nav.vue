@@ -6,6 +6,14 @@
           {{ item.title }}
         </a>
         <button type="button" class="btn btn-sm btn-outline-secondary"
+          @click="">
+          <span class="oi oi-pencil"></span>
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary"
+          @click="">
+          <span class="oi oi-x"></span>
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary"
           @click="toggleShow(item.id, item.show)">
           <!--<span class="oi" :class="[ { 'oi-caret-top': item.show, 'oi-caret-bottom': !item.show } ]"></span>-->
           <span class="oi" :class="[ item.show ? 'oi-caret-top' : 'oi-caret-bottom' ]"></span>
@@ -14,10 +22,20 @@
       </div>
       <transition name="router-anim">
         <div class="mb-2" v-show="item.show">
-          <a class="d-block border-top my-2 ml-3 col list-group-item-action" @click="setProductsSearchDetailsId(item.id, detail.id)"
-            v-for="(detail, index) in item.productDetails" :key="index">
-            {{ detail.productName }}
-          </a>
+          <div class="d-flex my-2" v-for="(detail, index) in item.productDetails" :key="index">
+            <a class="d-block border-top ml-3 col list-group-item-action"
+              @click="setProductsSearchDetailsId(item.id, detail.id)">
+              {{ detail.productName }}
+            </a>
+            <button type="button" class="btn btn-sm btn-outline-secondary"
+              @click="">
+              <span class="oi oi-pencil"></span>
+            </button>
+            <button type="button" class="btn btn-sm btn-outline-secondary"
+              @click="">
+              <span class="oi oi-x"></span>
+            </button>
+          </div>
         </div>
       </transition>
     </div>
