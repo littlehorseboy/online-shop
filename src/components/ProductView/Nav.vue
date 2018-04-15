@@ -7,14 +7,16 @@
         </a>
         <button type="button" class="btn btn-sm btn-outline-secondary"
           @click="toggleShow(item.id, item.show)">
-          <!--<span class="oi" :class="[ { 'oi-caret-top': item.show, 'oi-caret-bottom': !item.show } ]"></span>-->
+          <!--<span class="oi"
+            :class="[ { 'oi-caret-top': item.show, 'oi-caret-bottom': !item.show } ]"></span>-->
           <span class="oi" :class="[ item.show ? 'oi-caret-top' : 'oi-caret-bottom' ]"></span>
           <span class="sr-only"></span>
         </button>
       </div>
       <transition name="router-anim">
         <div class="mb-2" v-show="item.show">
-          <a class="d-block border-top my-2 ml-3 col list-group-item-action" @click="setProductsSearchDetailsId(item.id, detail.id)"
+          <a class="d-block border-top my-2 ml-3 col list-group-item-action"
+            @click="setProductsSearchDetailsId(item.id, detail.id)"
             v-for="(detail, index) in item.productDetails" :key="index">
             {{ detail.productName }}
           </a>
@@ -52,13 +54,13 @@ export default {
     },
 
     setProductsSearchListId(value) {
-      this.$router.push({ name: 'Product'});
+      this.$router.push({ name: 'Product' });
       this.$store.dispatch('productsSearchListId', value);
       this.$store.dispatch('productsSearchDetailsId', null);
     },
 
     setProductsSearchDetailsId(ListId, DatailId) {
-      this.$router.push({ name: 'Product'});
+      this.$router.push({ name: 'Product' });
       this.$store.dispatch('productsSearchListId', ListId);
       this.$store.dispatch('productsSearchDetailsId', DatailId);
     },

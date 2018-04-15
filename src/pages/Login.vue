@@ -37,7 +37,9 @@
           <input type="checkbox" value="remember-me"> {{ $t("Remember_me") }}
         </label>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit" @click="login">{{ $t("Sign_in") }}</button>
+      <button class="btn btn-lg btn-primary btn-block" type="submit" @click="login">
+        {{ $t("Sign_in") }}
+      </button>
       <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
     </form>
 
@@ -46,7 +48,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'hello',
@@ -64,16 +66,16 @@ export default {
         email: this.email,
         password: this.password,
       })
-      .then(() => { // 接收 resolve
-        console.log('3. get Promise resolve');
-        // 使用 $router.push 轉跳到 hello Page
-        setTimeout(() => {
-          this.$router.push('/admin');
-        }, 1000);
-      })
-      .catch(() => { // 接收 rejec
-        alert('error get Promise reject!');
-      });
+        .then(() => { // 接收 resolve
+          console.log('3. get Promise resolve');
+          // 使用 $router.push 轉跳到 hello Page
+          setTimeout(() => {
+            this.$router.push('/admin');
+          }, 1000);
+        })
+        .catch(() => { // 接收 rejec
+          alert('error get Promise reject!');
+        });
     },
     ...mapActions([
       'setLanguage',

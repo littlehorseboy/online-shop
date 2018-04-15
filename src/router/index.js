@@ -50,7 +50,7 @@ const router = new Router({
       name: 'AdminView',
       component: AdminView,
       meta: {
-        meta: { requiresAuth: true },
+        // requiresAuth: true,
       },
       children: [
         {
@@ -84,6 +84,7 @@ router.beforeEach((to, from, next) => {
     console.log('token?', store.state.token);
     if (store.state.token === '') {
       // 轉跳到 Login Page
+      alert('請先登入!');
       next({ path: '/login' });
     } else {
       next();

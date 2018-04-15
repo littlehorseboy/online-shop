@@ -2,23 +2,17 @@
   <div>
     <div v-for="(item, index) in productList" :key="index">
       <div class="d-flex mb-1">
-        <a class="col list-group-item-action" @click="setProductsSearchListId(item.id)">
-          {{ item.title }}
-        </a>
-        <button type="button" class="btn btn-sm btn-outline-secondary"
-          @click="">
-          <span class="oi oi-pencil"></span>
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary"
-          @click="">
-          <span class="oi oi-x"></span>
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-secondary"
+
+        <NavProductList :item="item"></NavProductList>
+
+        <button type="button" class="btn btn-sm btn-outline-secondary ml-auto"
           @click="toggleShow(item.id, item.show)">
-          <!--<span class="oi" :class="[ { 'oi-caret-top': item.show, 'oi-caret-bottom': !item.show } ]"></span>-->
+          <!--<span class="oi"
+            :class="[ { 'oi-caret-top': item.show, 'oi-caret-bottom': !item.show } ]"></span>-->
           <span class="oi" :class="[ item.show ? 'oi-caret-top' : 'oi-caret-bottom' ]"></span>
           <span class="sr-only"></span>
         </button>
+
       </div>
       <transition name="router-anim">
         <div class="mb-2" v-show="item.show">
@@ -27,29 +21,46 @@
               @click="setProductsSearchDetailsId(item.id, detail.id)">
               {{ detail.productName }}
             </a>
-            <button type="button" class="btn btn-sm btn-outline-secondary"
-              @click="">
+            <button type="button" class="btn btn-sm btn-outline-secondary">
               <span class="oi oi-pencil"></span>
             </button>
-            <button type="button" class="btn btn-sm btn-outline-secondary"
-              @click="">
+            <button type="button" class="btn btn-sm btn-outline-secondary">
               <span class="oi oi-x"></span>
             </button>
           </div>
         </div>
       </transition>
     </div>
+
+    <!-- 新增類別 ProductList -->
+    <div class="mb-2">
+      <div class="input-group input-group-sm">
+        <input v-model="newProductList" class="form-control form-control" placeholder="新增類別">
+        <div v-show="newProductListBtn" class="input-group-append">
+          <button @click="newProductListFunc" class="btn btn-outline-secondary" type="button">
+            <span class="oi oi-check"></span>
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- end 新增類別 ProductList -->
+
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import NavProductList from '../../components/admin/Nav/NavProductList';
 
 export default {
   name: 'Nav',
+  components: {
+    NavProductList,
+  },
   data() {
     return {
-
+      newProductList: '',
+      newProductListBtn: false,
     };
   },
   computed: {
@@ -58,27 +69,40 @@ export default {
     }),
   },
   methods: {
+    // 子項目選單開關
     toggleShow(id, value) {
       const vm = this;
       if (value) {
-        const o = vm.productList.find(obj => obj.id === id);
-        o.show = false;
+        this.$store.dispatch('toggleProductListDetails',
+          { key: id, toggle: !value }
+        );
       } else {
-        const o = vm.productList.find(obj => obj.id === id);
-        o.show = true;
+        this.$store.dispatch('toggleProductListDetails',
+          { key: id, toggle: !value }
+        );
       }
     },
 
-    setProductsSearchListId(value) {
-      this.$router.push({ name: 'Product'});
-      this.$store.dispatch('productsSearchListId', value);
-      this.$store.dispatch('productsSearchDetailsId', null);
-    },
-
     setProductsSearchDetailsId(ListId, DatailId) {
-      this.$router.push({ name: 'Product'});
+      this.$router.push({ name: 'Product' });
       this.$store.dispatch('productsSearchListId', ListId);
       this.$store.dispatch('productsSearchDetailsId', DatailId);
+    },
+
+    newProductListFunc() {
+      this.$store.dispatch('insertProductList', this.newProductList);
+      this.newProductList = '';
+    },
+
+  },
+
+  watch: {
+    newProductList(val) {
+      if (val !== '') {
+        this.newProductListBtn = true;
+      } else {
+        this.newProductListBtn = false;
+      }
     },
   },
 };

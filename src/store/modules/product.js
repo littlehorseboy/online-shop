@@ -1,6 +1,11 @@
+const uuidv1 = require('uuid/v1');
+
 const types = {
   PRODUCTS_SEARCH_LISTID: 'PRODUCTS_SEARCH_LISTID',
   PRODUCTS_SEARCH_DETAILSID: 'PRODUCTS_SEARCH_DETAILSID',
+  TOGGLE_PRODUCT_LIST_DETAILS: 'TOGGLE_PRODUCT_LIST_DETAILS',
+  INSERT_PRODUCT_LIST: 'INSERT_PRODUCT_LIST',
+  UPDATE_PRODUCT_LIST_TITLE: 'UPDATE_PRODUCT_LIST_TITLE',
 };
 
 const state = {
@@ -106,11 +111,15 @@ const getters = {
     let tempProducts = state.products;
 
     if (state.search.productListId !== null) {
-      tempProducts = tempProducts.filter(item => item.productListId === state.search.productListId);
+      tempProducts = tempProducts.filter(
+        item => item.productListId === state.search.productListId,
+      );
     }
 
     if (state.search.productDetailsId !== null) {
-      tempProducts = tempProducts.filter(item => item.productDetailsId === state.search.productDetailsId);
+      tempProducts = tempProducts.filter(
+        item => item.productDetailsId === state.search.productDetailsId,
+      );
     }
 
     return tempProducts;
@@ -125,6 +134,18 @@ const actions = {
   productsSearchDetailsId({ commit }, detailsId) {
     commit(types.PRODUCTS_SEARCH_DETAILSID, detailsId);
   },
+
+  toggleProductListDetails({ commit }, obj) {
+    commit(types.TOGGLE_PRODUCT_LIST_DETAILS, obj);
+  },
+
+  insertProductList({ commit }, insert) {
+    commit(types.INSERT_PRODUCT_LIST, insert);
+  },
+
+  updateProductListTitle({ commit }, obj) {
+    commit(types.UPDATE_PRODUCT_LIST_TITLE, obj);
+  },
 };
 
 const mutations = {
@@ -133,6 +154,26 @@ const mutations = {
   },
   [types.PRODUCTS_SEARCH_DETAILSID](state, detailsId) {
     state.search.productDetailsId = detailsId;
+  },
+
+  [types.TOGGLE_PRODUCT_LIST_DETAILS](state, obj) {
+    const productList = state.productList.find(item => item.id === obj.key);
+    productList.show = obj.toggle;
+  },
+
+  [types.INSERT_PRODUCT_LIST](state, insert) {
+    state.productList.push(
+      {
+        id: uuidv1(),
+        title: insert,
+        productDetails: [],
+      },
+    );
+  },
+
+  [types.UPDATE_PRODUCT_LIST_TITLE](state, obj) {
+    const productList = state.productList.find(item => item.id === obj.key);
+    productList.title = obj.update;
   },
 };
 
