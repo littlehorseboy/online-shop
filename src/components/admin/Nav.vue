@@ -71,14 +71,13 @@ export default {
   methods: {
     // 子項目選單開關
     toggleShow(id, value) {
-      const vm = this;
       if (value) {
         this.$store.dispatch('toggleProductListDetails',
-          { key: id, toggle: !value }
+          { key: id, toggle: !value },
         );
       } else {
         this.$store.dispatch('toggleProductListDetails',
-          { key: id, toggle: !value }
+          { key: id, toggle: !value },
         );
       }
     },

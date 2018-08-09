@@ -59,7 +59,7 @@ export default {
 
     updateProductListFunc(id) {
       this.$store.dispatch('updateProductListTitle',
-        { key: id, update: this.updateProductList }
+        { key: id, update: this.updateProductList },
       );
       this.editMode = !this.editMode;
     },

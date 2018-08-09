@@ -1,30 +1,6 @@
-# online-shop
+# vue-online-shop
+還只是一個可以篩選的商品列表 :sweat_smile:
 
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+首頁 (空)
+產品列表 (一堆貓)
+登入 (dispatch Promise 還有點問題沒解決)
